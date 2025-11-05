@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Sadaf Riaz</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="light soft-pink">
+  <div class="app">
+  
+    <aside class="sidebar">
+      <div class="brand-small">
+        <div class="brand-logo">SR</div>
+        <div class="brand-title">Sadaf R.</div>
+      </div>
+
+      <div class="user card">
+        <img src="images/image.png" class="avatar-sm" alt="Sadaf">
+        <div class="meta">
+          <div style="font-weight:700">Sadaf Riaz</div>
+          <div style="font-size:.85rem;color:var(--muted)">Computer Science</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html"><span class="label">Home</span></a>
+        <a href="skill.html"><span class="label">Skills</span></a>
+        <a href="project.html" class="active"><span class="label">Projects</span></a>
+        <a href="#" id="logoutSidebar"><span class="label">Logout</span></a>
+      </nav>
+
+      <div style="margin-top:auto">
+        <button class="btn ghost" id="sidebarToggle">Collapse</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileSidebarToggle" class="sidebar-toggle" title="Open sidebar">☰</button>
+          <div style="font-weight:700">Dashboard</div>
+        </div>
+        
+      </header>
+
+      <div class="page-content">
+        <h1>My Projects</h1>
+
+        <div class="filters card">
+          <label>Filter by technology:</label>
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-tech="all">All</button>
+            <button class="filter-btn" data-tech="react">React</button>
+            <button class="filter-btn" data-tech="mvc">ASP.NET MVC</button>
+            <button class="filter-btn" data-tech="ecommerce">E-commerce</button>
+            <button class="filter-btn" data-tech="ai">AI</button>
+          </div>
+        </div>
+
+        <section class="projects-grid card" id="projectsGrid">
+          <!-- Project 1: FYP -->
+          <article class="project-card" data-tech="react,ai">
+            <h3>Tour Management System (FYP)</h3>
+            <p class="desc">AI + VR powered tour management system to generate smart packages and provide VR previews.</p>
+            <ul>
+              <li><strong>Technologies:</strong> Python (AI), React, ASP .NET, SQL Database</li>
+              <li><strong>Problem:</strong> Travelers lack personalized planning with local vendor integration.</li>
+              <li><strong>Unique:</strong> AI-based Smart Package Generator + VR previews + vendor integration.</li>
+              <li><strong>Competitors:</strong> TripAdvisor, Expedia, Airbnb, Booking.com (less personalization).</li>
+               <li><strong>Demo / Repo:</strong> <a href="#" target="_blank">Add your link</a></li>
+            </ul>
+          </article>
+
+         
+          <article class="project-card" data-tech="mvc,ecommerce">
+            <h3>E-commerce Website</h3>
+            <p class="desc">Full-stack e-commerce platform with product listings, cart, admin panel and SQL backend.</p>
+            <ul>
+              <li><strong>Technologies:</strong> ASP.NET MVC, Bootstrap, SQL Database, JavaScript , jQuery</li>
+              <li><strong>Problem:</strong> Small vendors need an easy-to-manage shop system.</li>
+              <li><strong>Unique:</strong> Vendor panel, simple admin tools, product importer.</li>
+              <li><strong>Competitors:</strong> WooCommerce, Shopify (but this is custom-built for learning).</li>
+              <li><strong>Demo / Repo:</strong> <a href="#" target="_blank">Add your link</a></li>
+            </ul>
+          </article>
+        </section>
+
+        <a class="btn mt" href="index.html">Back to Home</a>
+      </div>
+
+      <footer class="site-footer">© <span id="year"></span> Sadaf Riaz</footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

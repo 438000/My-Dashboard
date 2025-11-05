@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Sadaf Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="light soft-pink auth-page">
+  <main class="container auth-card card">
+    <h2>Login</h2>
+    <form id="loginForm" novalidate>
+      <div class="form-row">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" required />
+        <small class="error" id="loginEmailError"></small>
+      </div>
+      <div class="form-row">
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" required />
+        <small class="error" id="loginPasswordError"></small>
+      </div>
+     
+      <div class="form-row">
+        <button type="submit" class="btn">Login</button>
+
+        <p class="muted small">Don't have an account yet. <a class="btn ghost" href="signup.html">Sign up</a></p>
+        
+      </div>
+      <div id="loginStatus" class="muted"></div>
+    </form>
+   
+  </main>
+
+  <script>
+    // Enhanced login logic with wrong password handling
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      const loginEmail = document.getElementById('loginEmail');
+      const loginPassword = document.getElementById('loginPassword');
+      const loginEmailError = document.getElementById('loginEmailError');
+      const loginPasswordError = document.getElementById('loginPasswordError');
+      const loginStatus = document.getElementById('loginStatus');
+
+      // Function to get users from localStorage
+      function getUsers() {
+        try {
+          return JSON.parse(localStorage.getItem('sadaf_users') || '[]');
+        } catch(e) {
+          return [];
+        }
+      }
+
+      // Function to set logged-in user
+      function setLogged(userObj) {
+        const serialized = JSON.stringify(userObj);
+        localStorage.setItem('sadaf_logged', serialized);
+      }
+
+      // Function to redirect
+      function go(url) {
+        window.location.href = url;
+      }
+
+      // Check if already logged in
+      const logged = JSON.parse(localStorage.getItem('sadaf_logged') || 'null');
+      if (logged) {
+        go('index.html');
+      }
+
+      // Login form submission
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = loginEmail.value.trim().toLowerCase();
+        const password = loginPassword.value;
+
+        // Reset errors
+        loginEmailError.textContent = '';
+        loginPasswordError.textContent = '';
+        loginStatus.textContent = '';
+        loginEmail.classList.remove('error-input');
+        loginPassword.classList.remove('error-input');
+
+        // Basic validation
+        if (!email) {
+          loginEmailError.textContent = 'Email is required';
+          loginEmail.classList.add('error-input');
+          return;
+        }
+
+        if (!password) {
+          loginPasswordError.textContent = 'Password is required';
+          loginPassword.classList.add('error-input');
+          return;
+        }
+
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          loginEmailError.textContent = 'Please enter a valid email address';
+          loginEmail.classList.add('error-input');
+          return;
+        }
+
+        // Check credentials
+        const users = getUsers();
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+          // User not found
+          loginStatus.textContent = 'No account found with this email. Please sign up first.';
+          loginStatus.style.color = '#ff4d4d';
+          loginEmail.classList.add('error-input');
+          return;
+        }
+
+        if (user.password !== password) {
+          // Wrong password
+          loginStatus.textContent = 'Incorrect password. Please try again.';
+          loginStatus.style.color = '#ff4d4d';
+          loginPasswordError.textContent = 'Wrong password';
+          loginPassword.classList.add('error-input');
+          loginPassword.value = ''; // Clear password field
+          loginPassword.focus(); // Focus back to password field
+          return;
+        }
+
+        // Successful login
+        setLogged({ name: user.name, email: user.email, age: user.age });
+        loginStatus.textContent = 'Login successful! Redirecting...';
+        loginStatus.style.color = '#4CAF50';
+        
+        setTimeout(() => {
+          go('index.html');
+        }, 1000);
+      });
+
+      // Real-time validation
+      loginEmail.addEventListener('input', function() {
+        if (this.value.trim()) {
+          this.classList.remove('error-input');
+          loginEmailError.textContent = '';
+        }
+      });
+
+      loginPassword.addEventListener('input', function() {
+        if (this.value) {
+          this.classList.remove('error-input');
+          loginPasswordError.textContent = '';
+          loginStatus.textContent = '';
+        }
+      });
+
+      // Focus on email field when page loads
+      loginEmail.focus();
+    });
+  </script>
+
+  <style>
+    .error-input {
+      border: 2px solid #ff4d4d !important;
+      background-color: #fff5f5;
+    }
+    
+    #loginStatus {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .btn.ghost {
+      display: inline;
+      padding: 0;
+      background: none;
+      border: none;
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    
+    .btn.ghost:hover {
+      background: none;
+      color: var(--accent-2);
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign up — Sadaf Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+  <main class="container auth-card card">
+    <h2>Create account</h2>
+    <form id="signupForm" novalidate>
+      <div class="form-row">
+        <label for="signupName">Full name</label>
+        <input id="signupName" required />
+        <small class="error" id="signupNameError"></small>
+      </div>
+      <div class="form-row">
+        <label for="signupEmail">Email</label>
+        <input id="signupEmail" type="email" required />
+        <small class="error" id="signupEmailError"></small>
+      </div>
+      <div class="form-row">
+        <label for="signupPassword">Password</label>
+        <input id="signupPassword" type="password" required />
+        <small class="error" id="signupPasswordError"></small>
+      </div>
+    
+      <div class="form-row">
+        <button type="submit" class="btn">Sign up</button>
+        <p class="muted small">Already have an account? <a class="btn ghost" href="login.html">Back to login</a></p>
+      </div>
+      <div id="signupStatus" class="muted"></div>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

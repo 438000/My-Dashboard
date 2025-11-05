@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sadaf Riaz — Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="light soft-pink">
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand-small">
+        <div class="brand-logo">SR</div>
+        <div class="brand-title">Sadaf R.</div>
+      </div>
+
+      <div class="user card">
+        <img src="images/image.png" class="avatar-sm" alt="Sadaf">
+        <div class="meta">
+          <div style="font-weight:700">Sadaf Riaz</div>
+          <div style="font-size:.85rem;color:var(--muted)">Computer Science</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="active"><span class="label">Home</span></a>
+        <a href="skill.html"><span class="label">Skills</span></a>
+        <a href="project.html"><span class="label">Projects</span></a>
+        <a href="#" id="logoutSidebar"><span class="label">Logout</span></a>
+      </nav>
+
+      <div style="margin-top:auto">
+        <button class="btn ghost" id="sidebarToggle">Collapse</button>
+      </div>
+    </aside>
+
+    
+    <div class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileSidebarToggle" class="sidebar-toggle" title="Open sidebar">☰</button>
+          <div style="font-weight:700">Dashboard</div>
+        </div>
+
+      </header>
+
+      <div class="page-content">
+        <section class="intro card">
+          <div class="profile">
+            <img src="images/image.png" alt="Sadaf profile" class="avatar" />
+          </div>
+          <div class="intro-text">
+            <h1>Hello — I'm <span class="accent">Sadaf Riaz</span></h1>
+            <p>
+              Hi! I'm <strong>Sadaf Riaz</strong>, a passionate and motivated <strong>Computer Science student</strong>
+              currently in my 4th semester at the <strong>University of Lahore</strong>. My journey in technology began
+              with curiosity and has grown into a deep interest in <strong>web development, AI, and innovative software
+                solutions</strong>. Over time, I’ve learned to work with several technologies including <strong>C++, C#,
+                HTML, CSS, JavaScript, jQuery, React (learning), Bootstrap, ASP.NET MVC,</strong> and <strong>SQL
+                Databases</strong>.
+            </p>
+
+            <p>
+              I love building creative, user-friendly, and functional projects that combine both design and logic. One
+              of my proudest achievements is my <strong>Final Year Project — a Tour Management System</strong> powered
+              by <strong>AI and VR</strong>. It’s designed to help travelers plan smarter, connect with local vendors,
+              and experience destinations virtually before visiting. I also developed an <strong>E-commerce
+                website</strong> where I explored online store functionality, product management, and customer
+              interaction.
+            </p>
+
+            <p>
+              Aside from coding, I believe in continuous learning and creativity. My ultimate goal is to become a
+              <strong>full-stack developer</strong> capable of crafting intelligent and impactful solutions that make
+              people’s lives easier. I’m also deeply inspired by innovation and love blending technology with real-world
+              experiences.
+            <p>
+              With every new challenge, I aim to grow, learn, and create something meaningful. My portfolio represents
+              not just my skills, but my dedication to turning ideas into reality — one project at a time.</p>
+            </p>
+
+            <div class="home-actions">
+              <a href="project.html" class="btn">View Projects</a>
+              <a href="skill.html" class="btn ghost">My Skills</a>
+            </div>
+
+
+          </div>
+        </section>
+
+        <section class="mini-clock card">
+          <h2>Session Timer</h2>
+          <p>Time on page: <span id="sessionTimer">00:00:00</span></p>
+          <p>Last visit duration: <span id="lastDuration">—</span></p>
+        </section>
+
+        <section class="contact card">
+          <h2>Contact Me</h2>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="name" name="name" required />
+              <small class="error" id="nameError"></small>
+            </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+              <small class="error" id="emailError"></small>
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+              <small class="error" id="messageError"></small>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+            <div id="formStatus" aria-live="polite"></div>
+          </form>
+          <p class="muted">Or email directly: <a href="mailto:sadafriaz483@gmail.com">sadafriaz483@gmail.com</a></p>
+        </section>
+      </div>
+
+      <footer class="site-footer">© <span id="year"></span> Sadaf Riaz</footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
