@@ -35,6 +35,85 @@
     </form>
   </main>
 
+  <script>
+// ============ SIGNUP FUNCTIONALITY ============
+
+// Wait until page fully loads
+document.addEventListener("DOMContentLoaded", function() {
+  const signupForm = document.getElementById("signupForm");
+  const nameInput = document.getElementById("signupName");
+  const emailInput = document.getElementById("signupEmail");
+  const passwordInput = document.getElementById("signupPassword");
+  const statusDiv = document.getElementById("signupStatus");
+
+  signupForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // stop page reload
+
+    // Get input values
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    // Reset errors
+    document.getElementById("signupNameError").textContent = "";
+    document.getElementById("signupEmailError").textContent = "";
+    document.getElementById("signupPasswordError").textContent = "";
+    statusDiv.textContent = "";
+
+    let valid = true;
+
+    // Validate inputs
+    if (name === "") {
+      document.getElementById("signupNameError").textContent = "Please enter your name.";
+      valid = false;
+    }
+
+    if (email === "") {
+      document.getElementById("signupEmailError").textContent = "Please enter your email.";
+      valid = false;
+    } else if (!email.includes("@")) {
+      document.getElementById("signupEmailError").textContent = "Invalid email address.";
+      valid = false;
+    }
+
+    if (password.length < 6) {
+      document.getElementById("signupPasswordError").textContent = "Password must be at least 6 characters.";
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    // Get existing users from localStorage
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Check if email already exists
+    const existingUser = users.find(user => user.email === email);
+    if (existingUser) {
+      statusDiv.style.color = "#ff6b6b";
+      statusDiv.textContent = "An account with this email already exists.";
+      return;
+    }
+
+    // Add new user
+    const newUser = { name, email, password };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Show success message
+    statusDiv.style.color = "#00ff99";
+    statusDiv.textContent = "✅ Account created successfully! Redirecting to login...";
+
+    // Clear form
+    signupForm.reset();
+
+    // Redirect to login page after 2 seconds
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 2000);
+  });
+});
+</script>
+
   <script src="script.js"></script>
 </body>
 </html>
