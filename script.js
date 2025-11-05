@@ -342,3 +342,125 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// === AUTHENTICATION SYSTEM ===
+
+function getUsers() {
+  const usersString = localStorage.getItem('sadaf_users');
+  return usersString ? JSON.parse(usersString) : [];
+}
+
+function saveUsers(usersArray) {
+  localStorage.setItem('sadaf_users', JSON.stringify(usersArray));
+}
+
+function setLoggedInUser(user, remember) {
+  const userData = JSON.stringify(user);
+  if (remember) {
+    localStorage.setItem('sadaf_logged', userData);
+  } else {
+    sessionStorage.setItem('sadaf_logged', userData);
+  }
+}
+
+function getLoggedInUser() {
+  const userString =
+    localStorage.getItem('sadaf_logged') ||
+    sessionStorage.getItem('sadaf_logged');
+  return userString ? JSON.parse(userString) : null;
+}
+
+function goToPage(url) {
+  window.location.href = url;
+}
+
+// === SIGNUP FORM ===
+const signupForm = document.querySelector('#signupForm');
+if (signupForm) {
+  signupForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const name = document.querySelector('#signupName').value.trim();
+    const email = document.querySelector('#signupEmail').value.trim().toLowerCase();
+    const password = document.querySelector('#signupPassword').value;
+    const status = document.querySelector('#signupStatus');
+
+    // Reset status text
+    status.textContent = '';
+    status.style.color = '';
+
+    // Validation
+    if (name.length < 2) {
+      status.textContent = 'Please enter your full name.';
+      status.style.color = 'red';
+      return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      status.textContent = 'Please enter a valid email.';
+      status.style.color = 'red';
+      return;
+    }
+    if (password.length < 6) {
+      status.textContent = 'Password must be at least 6 characters.';
+      status.style.color = 'red';
+      return;
+    }
+
+    const users = getUsers();
+    const existingUser = users.find((u) => u.email === email);
+
+    if (existingUser) {
+      // ✅ If already exists — log them in automatically
+      setLoggedInUser(existingUser, true);
+      status.textContent = 'Welcome back! Redirecting to dashboard...';
+      status.style.color = 'green';
+      setTimeout(() => goToPage('index.html'), 1000);
+      return;
+    }
+
+    // ✅ Create new user
+    const newUser = { name, email, password, age: 21 };
+    users.push(newUser);
+    saveUsers(users);
+    setLoggedInUser(newUser, true);
+
+    status.textContent = 'Account created successfully! Redirecting...';
+    status.style.color = 'green';
+
+    setTimeout(() => goToPage('index.html'), 1200);
+  });
+}
+
+// === LOGIN FORM ===
+const loginForm = document.querySelector('#loginForm');
+if (loginForm) {
+  loginForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const email = document.querySelector('#loginEmail').value.trim().toLowerCase();
+    const password = document.querySelector('#loginPassword').value;
+    const remember = document.querySelector('#rememberMe').checked;
+    const status = document.querySelector('#loginStatus');
+
+    status.textContent = '';
+    status.style.color = '';
+
+    const users = getUsers();
+    const foundUser = users.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (!foundUser) {
+      status.textContent = 'Invalid email or password.';
+      status.style.color = 'red';
+      return;
+    }
+
+    // ✅ Save session and redirect
+    setLoggedInUser(foundUser, remember);
+    status.textContent = 'Login successful! Redirecting...';
+    status.style.color = 'green';
+    setTimeout(() => goToPage('index.html'), 1000);
+  });
+}
+
