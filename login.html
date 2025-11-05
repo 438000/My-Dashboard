@@ -21,46 +21,65 @@
         <input id="loginPassword" type="password" required />
         <small class="error" id="loginPasswordError"></small>
       </div>
-     
       <div class="form-row">
         <button type="submit" class="btn">Login</button>
-
-        <p class="muted small">Don't have an account yet. <a class="btn ghost" href="signup.html">Sign up</a></p>
-        
+        <p class="muted small">Don't have an account? <a class="btn ghost" href="signup.html">Sign up</a></p>
       </div>
       <div id="loginStatus" class="muted"></div>
     </form>
-   
   </main>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginForm");
+    const statusDiv = document.getElementById("loginStatus");
 
-  <style>
-    .error-input {
-      border: 2px solid #ff4d4d !important;
-      background-color: #fff5f5;
+    // Check if user is already logged in
+    const loggedUser = localStorage.getItem('sadaf_logged') || sessionStorage.getItem('sadaf_logged');
+    if (loggedUser) {
+      window.location.href = 'index.html';
+      return;
     }
-    
-    #loginStatus {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: 500;
-    }
-    
-    .btn.ghost {
-      display: inline;
-      padding: 0;
-      background: none;
-      border: none;
-      color: var(--accent);
-      text-decoration: underline;
-    }
-    
-    .btn.ghost:hover {
-      background: none;
-      color: var(--accent-2);
-    }
-  </style>
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+      
+      // Reset errors
+      document.querySelectorAll(".error").forEach(e => (e.textContent = ""));
+      statusDiv.textContent = "";
+
+      // Basic validation
+      if (!email || !password) {
+        if (!email) document.getElementById('loginEmailError').textContent = "Enter your email.";
+        if (!password) document.getElementById('loginPasswordError').textContent = "Enter your password.";
+        return;
+      }
+
+      // Get users from localStorage
+      const users = JSON.parse(localStorage.getItem("sadaf_users") || "[]");
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        statusDiv.style.color = "#ff6b6b";
+        statusDiv.textContent = "Invalid email or password. Please try again.";
+        return;
+      }
+
+      // Login successful - store user session
+      localStorage.setItem('sadaf_logged', JSON.stringify(user));
+      
+      statusDiv.style.color = "#00c853";
+      statusDiv.textContent = `✅ Login successful! Redirecting...`;
+
+      // Redirect to home page
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
+    });
+  });
+  </script>
 </body>
 </html>

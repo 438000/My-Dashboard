@@ -26,6 +26,11 @@
         <input id="signupPassword" type="password" required />
         <small class="error" id="signupPasswordError"></small>
       </div>
+      <div class="form-row">
+        <label for="signupAge">Age</label>
+        <input id="signupAge" type="number" min="16" max="100" required />
+        <small class="error" id="signupAgeError"></small>
+      </div>
     
       <div class="form-row">
         <button type="submit" class="btn">Sign up</button>
@@ -36,84 +41,77 @@
   </main>
 
   <script>
-// ============ SIGNUP FUNCTIONALITY ============
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("signupForm");
+    const statusDiv = document.getElementById("signupStatus");
 
-// Wait until page fully loads
-document.addEventListener("DOMContentLoaded", function() {
-  const signupForm = document.getElementById("signupForm");
-  const nameInput = document.getElementById("signupName");
-  const emailInput = document.getElementById("signupEmail");
-  const passwordInput = document.getElementById("signupPassword");
-  const statusDiv = document.getElementById("signupStatus");
-
-  signupForm.addEventListener("submit", function(event) {
-    event.preventDefault(); // stop page reload
-
-    // Get input values
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    // Reset errors
-    document.getElementById("signupNameError").textContent = "";
-    document.getElementById("signupEmailError").textContent = "";
-    document.getElementById("signupPasswordError").textContent = "";
-    statusDiv.textContent = "";
-
-    let valid = true;
-
-    // Validate inputs
-    if (name === "") {
-      document.getElementById("signupNameError").textContent = "Please enter your name.";
-      valid = false;
-    }
-
-    if (email === "") {
-      document.getElementById("signupEmailError").textContent = "Please enter your email.";
-      valid = false;
-    } else if (!email.includes("@")) {
-      document.getElementById("signupEmailError").textContent = "Invalid email address.";
-      valid = false;
-    }
-
-    if (password.length < 6) {
-      document.getElementById("signupPasswordError").textContent = "Password must be at least 6 characters.";
-      valid = false;
-    }
-
-    if (!valid) return;
-
-    // Get existing users from localStorage
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // Check if email already exists
-    const existingUser = users.find(user => user.email === email);
-    if (existingUser) {
-      statusDiv.style.color = "#ff6b6b";
-      statusDiv.textContent = "An account with this email already exists.";
+    // Check if user is already logged in
+    const loggedUser = localStorage.getItem('sadaf_logged') || sessionStorage.getItem('sadaf_logged');
+    if (loggedUser) {
+      window.location.href = 'index.html';
       return;
     }
 
-    // Add new user
-    const newUser = { name, email, password };
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
+    form.addEventListener("submit", e => {
+      e.preventDefault();
 
-    // Show success message
-    statusDiv.style.color = "#00ff99";
-    statusDiv.textContent = "✅ Account created successfully! Redirecting to login...";
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value.trim();
+      const age = document.getElementById('signupAge').value;
 
-    // Clear form
-    signupForm.reset();
+      // Reset errors
+      document.querySelectorAll(".error").forEach(e => (e.textContent = ""));
+      statusDiv.textContent = "";
 
-    // Redirect to login page after 2 seconds
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 2000);
+      // Validation
+      let valid = true;
+      if (name.length < 2) { 
+        document.getElementById('signupNameError').textContent = "Name must be at least 2 characters."; 
+        valid = false; 
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) { 
+        document.getElementById('signupEmailError').textContent = "Please enter a valid email address."; 
+        valid = false; 
+      }
+      
+      if (password.length < 6) { 
+        document.getElementById('signupPasswordError').textContent = "Password must be at least 6 characters."; 
+        valid = false; 
+      }
+      
+      if (!age || age < 16 || age > 100) { 
+        document.getElementById('signupAgeError').textContent = "Please enter a valid age (16-100)."; 
+        valid = false; 
+      }
+
+      if (!valid) return;
+
+      // Check if user already exists
+      let users = JSON.parse(localStorage.getItem("sadaf_users") || "[]");
+      if (users.some(u => u.email === email)) {
+        statusDiv.style.color = "#ff6b6b";
+        statusDiv.textContent = "An account with this email already exists.";
+        return;
+      }
+
+      // Create new user
+      const newUser = { name, email, password, age: parseInt(age) };
+      users.push(newUser);
+      localStorage.setItem("sadaf_users", JSON.stringify(users));
+      
+      localStorage.setItem('sadaf_logged', JSON.stringify(newUser));
+      
+      statusDiv.style.color = "#00c853";
+      statusDiv.textContent = " Account created successfully! Redirecting...";
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    });
   });
-});
-</script>
-
-  <script src="script.js"></script>
+  </script>
 </body>
 </html>

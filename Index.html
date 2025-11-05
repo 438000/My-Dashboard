@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,9 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
-<body class="light soft-pink">
+<body class="light">
   <div class="app">
-    <!-- SIDEBAR -->
+  
     <aside class="sidebar">
       <div class="brand-small">
         <div class="brand-logo">SR</div>
@@ -38,17 +37,18 @@
       </div>
     </aside>
 
-    
+   
     <div class="main">
       <header class="topbar">
         <div class="left">
           <button id="mobileSidebarToggle" class="sidebar-toggle" title="Open sidebar">☰</button>
           <div style="font-weight:700">Dashboard</div>
+        
         </div>
-
       </header>
 
       <div class="page-content">
+      
         <section class="intro card">
           <div class="profile">
             <img src="images/image.png" alt="Sadaf profile" class="avatar" />
@@ -59,7 +59,7 @@
               Hi! I'm <strong>Sadaf Riaz</strong>, a passionate and motivated <strong>Computer Science student</strong>
               currently in my 4th semester at the <strong>University of Lahore</strong>. My journey in technology began
               with curiosity and has grown into a deep interest in <strong>web development, AI, and innovative software
-                solutions</strong>. Over time, I’ve learned to work with several technologies including <strong>C++, C#,
+                solutions</strong>. Over time, I've learned to work with several technologies including <strong>C++, C#,
                 HTML, CSS, JavaScript, jQuery, React (learning), Bootstrap, ASP.NET MVC,</strong> and <strong>SQL
                 Databases</strong>.
             </p>
@@ -67,7 +67,7 @@
             <p>
               I love building creative, user-friendly, and functional projects that combine both design and logic. One
               of my proudest achievements is my <strong>Final Year Project — a Tour Management System</strong> powered
-              by <strong>AI and VR</strong>. It’s designed to help travelers plan smarter, connect with local vendors,
+              by <strong>AI and VR</strong>. It's designed to help travelers plan smarter, connect with local vendors,
               and experience destinations virtually before visiting. I also developed an <strong>E-commerce
                 website</strong> where I explored online store functionality, product management, and customer
               interaction.
@@ -76,7 +76,7 @@
             <p>
               Aside from coding, I believe in continuous learning and creativity. My ultimate goal is to become a
               <strong>full-stack developer</strong> capable of crafting intelligent and impactful solutions that make
-              people’s lives easier. I’m also deeply inspired by innovation and love blending technology with real-world
+              people's lives easier. I'm also deeply inspired by innovation and love blending technology with real-world
               experiences.
             <p>
               With every new challenge, I aim to grow, learn, and create something meaningful. My portfolio represents
@@ -89,20 +89,26 @@
             </div>
              
 
-             <div class="theme-switcher">
-              <label>Home Theme</label>
-              <button id="themeToggle" aria-pressed="false">Switch Theme</button>
-            </div>
+           <div class="theme-switcher card">
+  <h3>Appearance</h3>
+  <div class="theme-row">
+    <button id="themeToggle" class="btn ghost" aria-pressed="false">
+      <span id="themeText">Light Mode</span>
+    </button>
+  </div>
+</div>
 
           </div>
         </section>
 
+        
         <section class="mini-clock card">
           <h2>Session Timer</h2>
           <p>Time on page: <span id="sessionTimer">00:00:00</span></p>
           <p>Last visit duration: <span id="lastDuration">—</span></p>
         </section>
 
+        <!-- CONTACT -->
         <section class="contact card">
           <h2>Contact Me</h2>
           <form id="contactForm" novalidate>
@@ -134,5 +140,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>

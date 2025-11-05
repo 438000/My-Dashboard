@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Projects — Sadaf Riaz</title>
+  <title>Sadaf Riaz — Projects</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body class="light soft-pink">
+
+<body>
   <div class="app">
-  
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="brand-small">
         <div class="brand-logo">SR</div>
@@ -41,59 +42,128 @@
       <header class="topbar">
         <div class="left">
           <button id="mobileSidebarToggle" class="sidebar-toggle" title="Open sidebar">☰</button>
-          <div style="font-weight:700">Dashboard</div>
+          <div style="font-weight:700">My Projects</div>
+          
         </div>
-        
       </header>
 
       <div class="page-content">
-        <h1>My Projects</h1>
+        <!-- PROJECTS HEADER -->
+        <section class="card">
+          <h1>Project Portfolio</h1>
+          <p class="lead">A showcase of my major projects, highlighting technical implementation, problem-solving, and innovation.</p>
+          
+          <!-- FILTERS -->
+          <div class="filters">
+            <h3>Filter by Technology:</h3>
+            <div class="filter-buttons">
+              <button class="filter-btn active" data-tech="all">All Projects</button>
+              <button class="filter-btn" data-tech="ai">AI/ML</button>
+              <button class="filter-btn" data-tech="web">Web Development</button>
+              <button class="filter-btn" data-tech="vr">VR/AR</button>
+              
+            </div>
+          </div>
+        </section>
 
-        <div class="filters card">
-          <label>Filter by technology:</label>
-          <div class="filter-buttons">
-            <button class="filter-btn active" data-tech="all">All</button>
-            <button class="filter-btn" data-tech="react">React</button>
-            <button class="filter-btn" data-tech="mvc">ASP.NET MVC</button>
-            <button class="filter-btn" data-tech="ecommerce">E-commerce</button>
-            <button class="filter-btn" data-tech="ai">AI</button>
+        <!-- PROJECTS GRID -->
+        <div class="projects-grid">
+          <!-- Project 1: Tour Management System -->
+          <div class="project-card card" data-tech="ai,vr,web">
+            <h2>AI-Powered Tour Management System</h2>
+            <p class="small muted">Final Year Project</p>
+            
+            <h3>Problem Statement</h3>
+            <p>Travelers often struggle with planning trips, finding authentic local experiences, and managing bookings across multiple platforms. Traditional travel apps lack personalization and immersive preview capabilities.</p>
+            
+            <h3>Unique Proposition</h3>
+            <p>Our system combines AI-driven recommendations with VR previews to create personalized travel experiences. Users can virtually explore destinations before booking and get AI-curated itineraries based on their preferences.</p>
+            
+            <h3>Technologies Used</h3>
+            <ul>
+              <li>React.js for frontend</li>
+              <li>C#  for backend</li>
+              <li>Python for AI/ML algorithms</li>
+              <li>Unity for VR experiences</li>
+              <li>MySQL for database</li>
+              <li>TensorFlow for recommendation engine</li>
+            </ul>
+            
+            <h3>Competitor Information</h3>
+            <p>Unlike standard booking platforms (Booking.com, Expedia), our system focuses on personalized AI recommendations and immersive VR previews, bridging the gap between online research and real-world experience.</p>
+            
+            <div class="mt">
+              <a href="https://github.com/sadafriaz/tour-management-system" class="btn" target="_blank">View on GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project 2: E-commerce Website -->
+          <div class="project-card card" data-tech="web,mobile">
+            <h2>Modern E-commerce Platform</h2>
+            <p class="small muted">Full-Stack Development Project</p>
+            
+            <h3>Problem Statement</h3>
+            <p>Small businesses need affordable, customizable e-commerce solutions that are easy to manage while providing modern shopping experiences comparable to large platforms.</p>
+            
+            <h3>Unique Proposition</h3>
+            <p>A modular e-commerce platform with AI-powered inventory management and personalized shopping experiences. Features include smart product recommendations, automated restocking alerts, and multi-vendor support.</p>
+            
+            <h3>Technologies Used</h3>
+            <ul>
+              <li>ASP.NET MVC for backend</li>
+              <li>SQL Server for database</li>
+              <li>HTML5, CSS3, JavaScript for frontend</li>
+              <li>Bootstrap for responsive design</li>
+              <li>Stripe API for payments</li>
+              <!-- <li>Azure for deployment</li> -->
+            </ul>
+            
+            <h3>Competitor Information</h3>
+            <p>While platforms like Shopify offer comprehensive solutions, our platform focuses on AI-driven inventory optimization and personalized customer experiences at a more accessible price point for small businesses.</p>
+            
+            <div class="mt">
+              <a href="https://github.com/438000/shopping-cart" class="btn" target="_blank">View on GitHub</a>
+            </div>
+          </div>
+
+         
+
+          <!-- Project 3: Educational Platform -->
+          <div class="project-card card" data-tech="web,ai">
+            <h2>Interactive Learning Platform</h2>
+            <p class="small muted">Web Application Project</p>
+            
+            <h3>Problem Statement</h3>
+            <p>Online learning platforms often lack engagement and personalization, leading to high dropout rates. Students need adaptive learning paths and interactive content.</p>
+            
+            <h3>Unique Proposition</h3>
+            <p>An AI-driven educational platform that adapts to individual learning styles, provides interactive coding exercises, and offers real-time feedback and progress tracking.</p>
+            
+            <h3>Technologies Used</h3>
+            <ul>
+              <li>HTML, CSS, jQuery for frontend</li>
+              <li>C# backend</li>
+              <li>MySQL for database</li>
+              <li>OpenAI API for intelligent tutoring</li>
+             
+            </ul>
+            
+            <h3>Competitor Information</h3>
+            <p>While platforms like Coursera and Udemy offer vast course libraries, our platform focuses on adaptive learning technology and interactive coding environments for technical education.</p>
+            
+            <div class="mt">
+              <a href="https://github.com/sadafriaz/learning-platform" class="btn" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <section class="projects-grid card" id="projectsGrid">
-          <!-- Project 1: FYP -->
-          <article class="project-card" data-tech="react,ai">
-            <h3>Tour Management System (FYP)</h3>
-            <p class="desc">AI + VR powered tour management system to generate smart packages and provide VR previews.</p>
-            <ul>
-              <li><strong>Technologies:</strong> Python (AI), React, ASP .NET, SQL Database</li>
-              <li><strong>Problem:</strong> Travelers lack personalized planning with local vendor integration.</li>
-              <li><strong>Unique:</strong> AI-based Smart Package Generator + VR previews + vendor integration.</li>
-              <li><strong>Competitors:</strong> TripAdvisor, Expedia, Airbnb, Booking.com (less personalization).</li>
-               
-            </ul>
-          </article>
-
-         
-          <article class="project-card" data-tech="mvc,ecommerce">
-            <h3>E-commerce Website</h3>
-            <p class="desc">Full-stack e-commerce platform with product listings, cart, admin panel and SQL backend.</p>
-            <ul>
-              <li><strong>Technologies:</strong> ASP.NET MVC, Bootstrap, SQL Database, JavaScript , jQuery</li>
-              <li><strong>Problem:</strong> Small vendors need an easy-to-manage shop system.</li>
-              <li><strong>Unique:</strong> Vendor panel, simple admin tools, product importer.</li>
-              <li><strong>Competitors:</strong> WooCommerce, Shopify (but this is custom-built for learning).</li>
-              <li><strong>Demo / Repo:</strong> <a href="https://438000.github.io/Shopping-Cart/
-" target="_blank">https://438000.github.io/Shopping-Cart/
-</a></li>
-            </ul>
-          </article>
-        </section>
-
-        <a class="btn mt" href="index.html">Back to Home</a>
+        <div class="navigation-actions">
+          <a href="skill.html" class="btn ghost">← Back to Skills</a>
+          <a href="index.html" class="btn">Go to Home →</a>
+        </div>
       </div>
 
-      <footer class="site-footer">© <span id="year"></span> Sadaf Riaz</footer>
+      <footer class="site-footer">© <span id="year3"></span> Sadaf Riaz</footer>
     </div>
   </div>
 
