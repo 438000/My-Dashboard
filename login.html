@@ -23,7 +23,7 @@
       </div>
       <div class="form-row">
         <button type="submit" class="btn">Login</button>
-        <p class="muted small">Don't have an account? <a class="btn ghost" href="signup.html">Sign up</a></p>
+        <p class="muted small">Don't have an account? <a href="signup.html" class="link-text">Sign up</a></p>
       </div>
       <div id="loginStatus" class="muted"></div>
     </form>
@@ -81,5 +81,19 @@
     });
   });
   </script>
+
+  <style>
+    .link-text {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .link-text:hover {
+      color: var(--accent-2);
+      text-decoration: underline;
+    }
+  </style>
 </body>
 </html>

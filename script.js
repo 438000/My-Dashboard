@@ -111,14 +111,29 @@
       const value = Number(skill.dataset.value) || 0
       const bar = skill.querySelector('.progress-bar')
       if(bar){
-        setTimeout(() => {
-          bar.style.width = value + '%'
-        }, 200)
+        // Set the width immediately to the target value
+        bar.style.width = value + '%'
       }
     })
   }
-  // run on skills page
-  if(path === 'skill.html') setTimeout(animateSkills, 300)
+  
+  // Initialize skill bars when page loads
+  if(path === 'skill.html') {
+    // Use Intersection Observer to animate when skills come into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateSkills();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    const skillsSection = qs('.skills-categories');
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
+  }
 
   // ---------- PROJECT FILTER (projects page) ----------
   const filterBtns = qsa('.filter-btn')
