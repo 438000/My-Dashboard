@@ -1,21 +1,6 @@
 # Sadaf Riaz - Personal Dashboard
 
 A modern, responsive personal dashboard showcasing my skills, projects, and professional portfolio as a Computer Science student. Built with pure HTML, CSS, and JavaScript.
-
-# Table of Contents
-
-- [Features](#features)
-- [Pages](#pages)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Key Features](#key-features)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
 # Features
 
 # Design & UI
@@ -33,12 +18,7 @@ A modern, responsive personal dashboard showcasing my skills, projects, and prof
 - **Contact Form**: Fully validated contact form with error handling
 - **Collapsible Sidebar**: Responsive navigation sidebar
 
-# Technical Features
-- **Form Validation**: Client-side validation for all forms
-- **Local Storage**: Persistent user sessions and preferences
-- **Error Handling**: Comprehensive error messages and validation
-- **Image Fallbacks**: Graceful handling of missing images
-- **Cross-browser Compatibility**: Works on all modern browsers
+
 
 #  Pages
 
@@ -82,19 +62,8 @@ A modern, responsive personal dashboard showcasing my skills, projects, and prof
 - **CSS Grid & Flexbox**: Modern layout techniques
 - **CSS Transitions**: Smooth animations and hover effects
 
-# Features & Functionality
-- **Local Storage API**: User sessions and preferences
-- **Intersection Observer API**: Skill bar animations
-- **Form Validation API**: Client-side form validation
-
-## 🚀 Installation
-
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Local server (for local development)
-
 ### Local Development
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/438000/shopping-cart]
+   git clone [https://github.com/438000/My-Dashboard]
    cd My-dashboard
